@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="eu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasiera | Erandioko Kirolak</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="top-bar">
+        <span><i class="fas fa-phone"></i> 94 467 05 11</span>
+        <div class="top-bar-actions">
+            <div>
+                <a href="index-eu.html" style="text-decoration: underline;">Euskara</a>
+                <a href="index.html">Español</a>
+            </div>
+            <a href="https://erreserbakirolak.erandio.eus/online/Site/Index?idioma=EU" class="btn-mi-zona">Nire Gunea</a>
+        </div>
+    </div>
+    <header>
+        <div class="nav-container">
+            <a href="index-eu.html" class="logo"><img src="logo.png" alt="Erandio Kirolak" class="logo-img"></a>
+            <nav>
+                <ul>
+                    <li><a href="index-eu.html">Hasiera</a></li>
+                    <li><a href="instalazioak.html">Instalazioak</a></li>
+                    <li><a href="abonamenduak.html">Abonoa</a></li>
+                    <li><a href="dokumentazioa.html">Dokumentazioa</a></li>
+                    <li><a href="berriak.html">Berriak</a></li>
+                    <li><a href="harremanetarako.html">Kontaktua</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Ongi etorri Erandioko Kirolak-era</h1>
+            <p>Erandioko jarduera fisiko, osasun eta ongizatearen topagunea.</p>
+            <div>
+                <a href="abonamenduak.html" class="btn">Abonatu Egin Sare</a>
+                <a href="instalazioak.html" class="btn btn-outline">Ikusi Instalazioak</a>
+            </div>
+        </section>
+
+        <section style="margin-top: 4rem;">
+            <h2 class="section-title">Azken Berria</h2>
+            <div id="latest-news-container-eu">
+                <!-- Javascript will populate this -> needs adaptation in script.js to support EU but for now we'll rely on the same logic if possible or modify script -->
+            </div>
+        </section>
+
+        <section style="margin-top: 4rem;">
+            <h2 class="section-title">Gure Instalazio Nabarmenak</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Kiroldegia Altzaga</h3>
+                    <p>Igerileku klimatizatua, muskulazio gimnasioa, jarduera bideratuen aretoak eta kantxa anitzeko
+                        pista.</p>
+                </div>
+                <div class="card">
+                    <h3>Kiroldegia Astrabudua</h3>
+                    <p>Hainbat pista, fitness guneak eta entrenamendu kardiobaskularretarako espazioak dituen
+                        kiroldegia.</p>
+                </div>
+                <div class="card">
+                    <h3>Arteagako Futbol Zelaia</h3>
+                    <p>Belar artifizialeko zelai modernoa futbolean jokatzeko eta entrenamenduetarako.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Kontaktua</h4>
+                <p><i class="fas fa-phone"></i> 94 467 05 11 – 94 467 34 61</p>
+                <p><i class="fas fa-envelope"></i> erandiokirolak@erandio.eus</p>
+            </div>
+            <div class="footer-section">
+                <h4>Esteka Azkarrak</h4>
+                <a href="instalazioak.html">Instalazioak</a>
+                <a href="abonamenduak.html">Tasak eta Abonamenduak</a>
+                <a href="dokumentazioa.html">Dokumentazio Ofiziala</a>
+            </div>
+            <div class="footer-section">
+                <h4>Lege Oharrak</h4>
+                <a href="#">Pribatutasun Politika</a>
+                <a href="#">Cookien Politika</a>
+                <a href="#">Lege Oharra</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Erandioko Kirolak. Eskubide guztiak erreserbatuta.
+        </div>
+    </footer>
+
+    <a href="backoffice.html" class="admin-btn" title="Backoffice / Rich Editor"><i class="fas fa-cog"></i></a>
+
+    <script src="script.js"></script>
+    <script>
+        // Custom logic to load localized news since the storage is shared
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('latest-news-container-eu');
+            if (container) {
+                const news = JSON.parse(localStorage.getItem('kirolak_news') || '[]');
+                if (news.length === 0) {
+                    container.innerHTML = '<p>Ez dago azken berririk.</p>';
+                } else {
+                    const latest = news[0];
+                    container.innerHTML = `
+                       <div class="news-item">
+                           <span class="news-date">${new Date(latest.date).toLocaleDateString('eu-ES')}</span>
+                           <h3 class="news-title">${latest.title}</h3>
+                           <div class="news-content">
+                               ${latest.content.length > 200 ? latest.content.substring(0, 200) + '...' : latest.content}
+                           </div>
+                           <a href="berriak.html" class="btn" style="margin-top: 1rem;">Ikusi berri guztiak</a>
+                       </div>
+                   `;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Erandio Kirolak</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="top-bar">
+        <span><i class="fas fa-phone"></i> 94 467 05 11</span>
+        <div class="top-bar-actions">
+            <div>
+                <a href="harremanetarako.html">Euskara</a>
+                <a href="contacto.html" style="text-decoration: underline;">Español</a>
+            </div>
+            <a href="https://erreserbakirolak.erandio.eus/online/Site/Index?idioma=ES" class="btn-mi-zona">Mi Zona</a>
+        </div>
+    </div>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo"><img src="logo.png" alt="Erandio Kirolak" class="logo-img"></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="instalaciones.html">Instalaciones</a></li>
+                    <li><a href="abonos.html">Abono</a></li>
+                    <li><a href="documentacion.html">Documentación</a></li>
+                    <li><a href="noticias.html">Noticias</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h1 class="section-title">Contacto General</h1>
+        <p style="text-align: center; margin-bottom: 2rem;">Estamos a tu disposición para cualquier consulta, duda o
+            sugerencia. Puedes ponerte en contacto con nosotros por los siguientes canales.</p>
+
+        <div class="grid" style="align-items: start;">
+            <div class="card">
+                <h3><i class="fas fa-address-book"></i> Información de Contacto</h3>
+
+                <div style="margin-top: 1.5rem;">
+                    <h4 style="margin-bottom: 0.5rem; color: var(--text-color);">Teléfono</h4>
+                    <p
+                        style="font-size: 1.2rem; color: var(--primary-color); font-weight: bold; margin-bottom: 1.5rem;">
+                        94 467 05 11 <br> 94 467 34 61</p>
+
+                    <h4 style="margin-bottom: 0.5rem; color: var(--text-color);">Correo Electrónico</h4>
+                    <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                        <a href="mailto:erandiokirolak@erandio.eus"
+                            style="color: var(--secondary-color); text-decoration: none; font-weight: bold;">erandiokirolak@erandio.eus</a>
+                    </p>
+
+                    <h4 style="margin-bottom: 0.5rem; color: var(--text-color);">Dirección</h4>
+                    <p>
+                        Polideportivo Altzaga<br>
+                        San Agustín, s/n<br>
+                        48950 Erandio (Bizkaia)
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-envelope"></i> Formulario de Mensaje</h3>
+                <form action="#" method="get" onsubmit="alert('Mensaje enviado (simulación)'); return false;">
+                    <div class="form-group">
+                        <label for="nombre">Nombre y Apellidos</label>
+                        <input type="text" id="nombre" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="asunto">Asunto</label>
+                        <input type="text" id="asunto" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" class="form-control" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group" style="display: flex; gap: 10px; align-items: start;">
+                        <input type="checkbox" id="privacidad" required style="margin-top: 5px;">
+                        <label for="privacidad" style="font-weight: normal; font-size: 0.9rem;">He leído y acepto la
+                            Política de Privacidad de Erandio Kirolak.</label>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p><i class="fas fa-phone"></i> 94 467 05 11 – 94 467 34 61</p>
+                <p><i class="fas fa-envelope"></i> erandiokirolak@erandio.eus</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <a href="instalaciones.html">Instalaciones</a>
+                <a href="abonos.html">Abono</a>
+                <a href="documentacion.html">Documentación Oficial</a>
+            </div>
+            <div class="footer-section">
+                <h4>Avisos Legales</h4>
+                <a href="#">Política de Privacidad</a>
+                <a href="#">Política de Cookies</a>
+                <a href="#">Aviso Legal</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Erandio Kirolak. Todos los derechos reservados.
+        </div>
+    </footer>
+    <a href="backoffice.html" class="admin-btn" title="Backoffice / Rich Editor"><i class="fas fa-cog"></i></a>
+</body>
+
+</html>

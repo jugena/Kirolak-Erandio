@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias | Erandio Kirolak</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="top-bar">
+        <span><i class="fas fa-phone"></i> 94 467 05 11</span>
+        <div class="top-bar-actions">
+            <div>
+                <a href="berriak.html">Euskara</a>
+                <a href="noticias.html" style="text-decoration: underline;">Español</a>
+            </div>
+            <a href="https://erreserbakirolak.erandio.eus/online/Site/Index?idioma=ES" class="btn-mi-zona">Mi Zona</a>
+        </div>
+    </div>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo"><img src="logo.png" alt="Erandio Kirolak" class="logo-img"></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="instalaciones.html">Instalaciones</a></li>
+                    <li><a href="abonos.html">Abono</a></li>
+                    <li><a href="documentacion.html">Documentación</a></li>
+                    <li><a href="noticias.html">Noticias</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <h1 class="section-title" style="margin-bottom: 0;">Últimas Noticias</h1>
+            <a href="backoffice.html" class="btn btn-outline"
+                style="border-color: var(--primary-color); color: var(--primary-color);"><i class="fas fa-edit"></i>
+                Publicar Noticia</a>
+        </div>
+
+        <div id="all-news-container" style="max-width: 900px; margin: 0 auto;">
+            <!-- Noticias cargadas dinámicamente aquí -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p><i class="fas fa-phone"></i> 94 467 05 11 – 94 467 34 61</p>
+                <p><i class="fas fa-envelope"></i> erandiokirolak@erandio.eus</p>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <a href="instalaciones.html">Instalaciones</a>
+                <a href="abonos.html">Abono</a>
+                <a href="documentacion.html">Documentación Oficial</a>
+            </div>
+            <div class="footer-section">
+                <h4>Avisos Legales</h4>
+                <a href="#">Política de Privacidad</a>
+                <a href="#">Política de Cookies</a>
+                <a href="#">Aviso Legal</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Erandio Kirolak. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <a href="backoffice.html" class="admin-btn" title="Backoffice / Rich Editor"><i class="fas fa-cog"></i></a>
+</body>
+
+</html>

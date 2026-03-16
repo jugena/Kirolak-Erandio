@@ -1,0 +1,11 @@
+# OS files
+.DS_Store
+
+# Scripts
+update_links.py
+add_mi_zona.py
+update_logo.py
+
+# Temp files
+*.zip
+*.log

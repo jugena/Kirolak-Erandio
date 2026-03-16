@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="eu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontaktua | Erandioko Kirolak</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="top-bar">
+        <span><i class="fas fa-phone"></i> 94 467 05 11</span>
+        <div class="top-bar-actions">
+            <div>
+                <a href="harremanetarako.html" style="text-decoration: underline;">Euskara</a>
+                <a href="contacto.html">Español</a>
+            </div>
+            <a href="https://erreserbakirolak.erandio.eus/online/Site/Index?idioma=EU" class="btn-mi-zona">Nire Gunea</a>
+        </div>
+    </div>
+    <header>
+        <div class="nav-container">
+            <a href="index-eu.html" class="logo"><img src="logo.png" alt="Erandio Kirolak" class="logo-img"></a>
+            <nav>
+                <ul>
+                    <li><a href="index-eu.html">Hasiera</a></li>
+                    <li><a href="instalazioak.html">Instalazioak</a></li>
+                    <li><a href="abonamenduak.html">Abonoa</a></li>
+                    <li><a href="dokumentazioa.html">Dokumentazioa</a></li>
+                    <li><a href="berriak.html">Berriak</a></li>
+                    <li><a href="harremanetarako.html">Kontaktua</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h1 class="section-title">Harremanetarako</h1>
+        <p style="text-align: center; margin-bottom: 2rem;">Zure esku gaude edozein kontsulta, zalantza edo
+            iradokizunetarako.</p>
+
+        <div class="grid" style="align-items: start;">
+            <div class="card">
+                <h3><i class="fas fa-address-book"></i> Harremanetarako Informazioa</h3>
+
+                <div style="margin-top: 1.5rem;">
+                    <h4 style="margin-bottom: 0.5rem; color: var(--text-color);">Telefonoa</h4>
+                    <p
+                        style="font-size: 1.2rem; color: var(--primary-color); font-weight: bold; margin-bottom: 1.5rem;">
+                        94 467 05 11 <br> 94 467 34 61</p>
+
+                    <h4 style="margin-bottom: 0.5rem; color: var(--text-color);">Posta Elektronikoa</h4>
+                    <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                        <a href="mailto:erandiokirolak@erandio.eus"
+                            style="color: var(--secondary-color); text-decoration: none; font-weight: bold;">erandiokirolak@erandio.eus</a>
+                    </p>
+
+                    <h4 style="margin-bottom: 0.5rem; color: var(--text-color);">Helbidea</h4>
+                    <p>
+                        Altzaga Kiroldegia<br>
+                        San Agustin, z/g<br>
+                        48950 Erandio (Bizkaia)
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-envelope"></i> Mezu Berria Formularioa</h3>
+                <form action="#" method="get" onsubmit="alert('Mezua bidali da (simulazioa)'); return false;">
+                    <div class="form-group">
+                        <label for="nombre">Izen abizenak</label>
+                        <input type="text" id="nombre" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Posta Elektronikoa</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="asunto">Gaia</label>
+                        <input type="text" id="asunto" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Mezua</label>
+                        <textarea id="mensaje" class="form-control" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group" style="display: flex; gap: 10px; align-items: start;">
+                        <input type="checkbox" id="privacidad" required style="margin-top: 5px;">
+                        <label for="privacidad" style="font-weight: normal; font-size: 0.9rem;">Erandioko Kirolak-en
+                            Pribatutasun Politika irakurri eta onartu dut.</label>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Mezua Bidali</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Kontaktua</h4>
+                <p><i class="fas fa-phone"></i> 94 467 05 11 – 94 467 34 61</p>
+                <p><i class="fas fa-envelope"></i> erandiokirolak@erandio.eus</p>
+            </div>
+            <div class="footer-section">
+                <h4>Esteka Azkarrak</h4>
+                <a href="instalazioak.html">Instalazioak</a>
+                <a href="abonamenduak.html">Tasak eta Abonamenduak</a>
+                <a href="dokumentazioa.html">Dokumentazio Ofiziala</a>
+            </div>
+            <div class="footer-section">
+                <h4>Lege Oharrak</h4>
+                <a href="#">Pribatutasun Politika</a>
+                <a href="#">Cookien Politika</a>
+                <a href="#">Lege Oharra</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Erandioko Kirolak. Eskubide guztiak erreserbatuta.
+        </div>
+    </footer>
+    <a href="backoffice.html" class="admin-btn" title="Backoffice / Rich Editor"><i class="fas fa-cog"></i></a>
+</body>
+
+</html>

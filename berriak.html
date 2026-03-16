@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="eu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berriak | Erandioko Kirolak</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="top-bar">
+        <span><i class="fas fa-phone"></i> 94 467 05 11</span>
+        <div class="top-bar-actions">
+            <div>
+                <a href="berriak.html" style="text-decoration: underline;">Euskara</a>
+                <a href="noticias.html">Español</a>
+            </div>
+            <a href="https://erreserbakirolak.erandio.eus/online/Site/Index?idioma=EU" class="btn-mi-zona">Nire Gunea</a>
+        </div>
+    </div>
+    <header>
+        <div class="nav-container">
+            <a href="index-eu.html" class="logo"><img src="logo.png" alt="Erandio Kirolak" class="logo-img"></a>
+            <nav>
+                <ul>
+                    <li><a href="index-eu.html">Hasiera</a></li>
+                    <li><a href="instalazioak.html">Instalazioak</a></li>
+                    <li><a href="abonamenduak.html">Abonoa</a></li>
+                    <li><a href="dokumentazioa.html">Dokumentazioa</a></li>
+                    <li><a href="berriak.html">Berriak</a></li>
+                    <li><a href="harremanetarako.html">Kontaktua</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <h1 class="section-title" style="margin-bottom: 0;">Azken Berriak</h1>
+            <a href="backoffice.html" class="btn btn-outline"
+                style="border-color: var(--primary-color); color: var(--primary-color);"><i class="fas fa-edit"></i>
+                Argitaratu Berria</a>
+        </div>
+
+        <div id="all-news-container-eu" style="max-width: 900px; margin: 0 auto;">
+            <!-- Javascript populate from script -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Kontaktua</h4>
+                <p><i class="fas fa-phone"></i> 94 467 05 11 – 94 467 34 61</p>
+                <p><i class="fas fa-envelope"></i> erandiokirolak@erandio.eus</p>
+            </div>
+            <div class="footer-section">
+                <h4>Esteka Azkarrak</h4>
+                <a href="instalazioak.html">Instalazioak</a>
+                <a href="abonamenduak.html">Tasak eta Abonamenduak</a>
+                <a href="dokumentazioa.html">Dokumentazio Ofiziala</a>
+            </div>
+            <div class="footer-section">
+                <h4>Lege Oharrak</h4>
+                <a href="#">Pribatutasun Politika</a>
+                <a href="#">Cookien Politika</a>
+                <a href="#">Lege Oharra</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Erandioko Kirolak. Eskubide guztiak erreserbatuta.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('all-news-container-eu');
+            if (container) {
+                const news = JSON.parse(localStorage.getItem('kirolak_news') || '[]');
+                if (news.length === 0) {
+                    container.innerHTML = '<p>Ez dago berririk argitaratuta.</p>';
+                } else {
+                    container.innerHTML = news.map(item => `
+                       <div class="news-item">
+                           <span class="news-date">${new Date(item.date).toLocaleDateString('eu-ES')}</span>
+                           <h2 class="news-title">${item.title}</h2>
+                           <div class="news-content">${item.content}</div>
+                       </div>
+                   `).join('');
+                }
+            }
+        });
+    </script>
+
+    <a href="backoffice.html" class="admin-btn" title="Backoffice / Rich Editor"><i class="fas fa-cog"></i></a>
+</body>
+
+</html>
