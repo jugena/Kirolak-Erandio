@@ -61,19 +61,46 @@
                 Publicar Nueva Noticia</h2>
 
             <form id="news-form">
-                <div class="form-group">
-                    <label for="news-title">Título de la noticia</label>
-                    <input type="text" id="news-title" class="form-control"
-                        placeholder="Ej: Abierto el plazo de inscripción a cursillos de natación" required>
+                <input type="hidden" id="news-id">
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <!-- Columna Castellano -->
+                    <div>
+                        <h3 style="margin-bottom: 1rem; color: #666;">Versión en Castellano</h3>
+                        <div class="form-group">
+                            <label for="news-title-es">Título (ES)</label>
+                            <input type="text" id="news-title-es" class="form-control" placeholder="Título en castellano" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Contenido (ES)</label>
+                            <div id="editor-es" style="height: 200px;"></div>
+                        </div>
+                        <button type="button" class="btn btn-outline btn-small" onclick="translateContent('es', 'eu')">
+                            Traducir a Euskera <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Columna Euskera -->
+                    <div>
+                        <h3 style="margin-bottom: 1rem; color: #666;">Versión en Euskera</h3>
+                        <div class="form-group">
+                            <label for="news-title-eu">Izenburua (EU)</label>
+                            <input type="text" id="news-title-eu" class="form-control" placeholder="Izenburua euskaraz" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Edukia (EU)</label>
+                            <div id="editor-eu" style="height: 200px;"></div>
+                        </div>
+                        <button type="button" class="btn btn-outline btn-small" onclick="translateContent('eu', 'es')">
+                            <i class="fas fa-arrow-left"></i> Traducir a Castellano
+                        </button>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Contenido de la noticia</label>
-                    <!-- Contenedor del Editor Rich Text -->
-                    <div id="editor-container"></div>
+                <div style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 1.5rem; text-align: center;">
+                    <button type="submit" id="submit-btn" class="btn"><i class="fas fa-save"></i> Publicar Noticia</button>
+                    <button type="button" id="cancel-edit" class="btn btn-outline" style="display: none; margin-left:1rem;">Cancelar Edición</button>
                 </div>
-
-                <button type="submit" class="btn"><i class="fas fa-save"></i> Publicar Noticia</button>
             </form>
         </div>
 

@@ -70,25 +70,6 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const container = document.getElementById('all-news-container-eu');
-            if (container) {
-                const news = JSON.parse(localStorage.getItem('kirolak_news') || '[]');
-                if (news.length === 0) {
-                    container.innerHTML = '<p>Ez dago berririk argitaratuta.</p>';
-                } else {
-                    container.innerHTML = news.map(item => `
-                       <div class="news-item">
-                           <span class="news-date">${new Date(item.date).toLocaleDateString('eu-ES')}</span>
-                           <h2 class="news-title">${item.title}</h2>
-                           <div class="news-content">${item.content}</div>
-                       </div>
-                   `).join('');
-                }
-            }
-        });
-    </script>
 
     <a href="backoffice.html" style="display: none;"></a>
 </body>
