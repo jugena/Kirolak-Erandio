@@ -228,6 +228,54 @@ function initSampleData() {
     }
 }
 
+// Map Initialization
+function initMap() {
+    const mapContainer = document.getElementById('map');
+    if (!mapContainer) return;
+
+    const lang = document.documentElement.lang || 'es';
+    
+    // Center map in Erandio
+    const map = L.map('map').setView([43.308, -2.978], 14);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    const locations = [
+        {
+            name: lang === 'eu' ? 'Altzaga Kiroldegia' : 'Polideportivo Altzaga',
+            coords: [43.30626, -2.97295],
+            url: lang === 'eu' ? 'altzaga-eu.html' : 'altzaga.html'
+        },
+        {
+            name: lang === 'eu' ? 'Astrabudua Kiroldegia' : 'Polideportivo Astrabudua',
+            coords: [43.31533, -2.98033],
+            url: lang === 'eu' ? 'astrabudua-eu.html' : 'astrabudua.html'
+        },
+        {
+            name: lang === 'eu' ? 'Arteagako Futbol Zelaia' : 'Campo de fútbol Arteaga',
+            coords: [43.30231, -2.97127],
+            url: lang === 'eu' ? 'arteaga-eu.html' : 'arteaga.html'
+        },
+        {
+            name: lang === 'eu' ? 'Astrabuduako Futbol Zelaia' : 'Campo de fútbol Astrabudua',
+            coords: [43.31481, -2.98004],
+            url: lang === 'eu' ? 'astrabudua-zelaia.html' : 'campo-astrabudua.html'
+        },
+        {
+            name: lang === 'eu' ? 'Lutxanako Arraun Pabilioia' : 'Pabellón Remo Lutxana',
+            coords: [43.30358, -2.99600],
+            url: lang === 'eu' ? 'lutxana-eu.html' : 'lutxana.html'
+        }
+    ];
+
+    locations.forEach(loc => {
+        L.marker(loc.coords).addTo(map)
+            .bindPopup(`<b>${loc.name}</b><br><a href="${loc.url}">${lang === 'eu' ? 'Ikusi xehetasunak' : 'Ver detalles'}</a>`);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initSampleData();
     loadLatestNews();

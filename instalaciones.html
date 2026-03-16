@@ -7,6 +7,7 @@
     <title>Instalaciones | Erandio Kirolak</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 </head>
 
 <body>
@@ -104,7 +105,18 @@
         </div>
     </footer>
 
-    
+    <section style="max-width: 1200px; margin: 4rem auto; padding: 0 2rem;">
+        <h2 class="section-title">Mapa de Instalaciones</h2>
+        <div id="map" style="height: 500px; width: 100%; border-radius: var(--border-radius); box-shadow: var(--box-shadow); margin-top: 2rem; z-index: 1;"></div>
+    </section>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof initMap === 'function') initMap();
+        });
+    </script>
 </body>
 
 </html>
