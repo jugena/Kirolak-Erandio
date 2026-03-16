@@ -39,6 +39,15 @@
 </head>
 
 <body style="background-color: #f0f2f5;">
+    <script>
+        (function() {
+            const password = prompt("Ingrese la contraseña de administrador:");
+            if (password !== "01_kirolak_01") {
+                alert("Acceso denegado.");
+                window.location.href = "index.html";
+            }
+        })();
+    </script>
 
     <div class="backoffice-header">
         <h1><i class="fas fa-tools"></i> Panel de Administración (Backoffice)</h1>
