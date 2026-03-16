@@ -255,7 +255,7 @@ function initMap() {
         },
         {
             name: lang === 'eu' ? 'Arteagako Futbol Zelaia' : 'Campo de fútbol Arteaga',
-            coords: [43.30231, -2.97127],
+            coords: [43.31041, -2.95745],
             url: lang === 'eu' ? 'arteaga-eu.html' : 'arteaga.html'
         },
         {
@@ -265,7 +265,7 @@ function initMap() {
         },
         {
             name: lang === 'eu' ? 'Lutxanako Arraun Pabilioia' : 'Pabellón Remo Lutxana',
-            coords: [43.30358, -2.99600],
+            coords: [43.29353, -2.97115],
             url: lang === 'eu' ? 'lutxana-eu.html' : 'lutxana.html'
         }
     ];
