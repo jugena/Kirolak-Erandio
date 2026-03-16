@@ -42,40 +42,38 @@
         <p style="text-align: center; margin-bottom: 2rem;">Ezagutu Erandioko Kirolak-ek eskaintzen dizkizun espazio
             guztiak.</p>
 
-        <div class="grid">
-            <div class="card">
-                <h3><i class="fas fa-building"></i> Altzaga Kiroldegia</h3>
-                <p>Udalerriaren erdialdean kokatua, 25m-ko igerileku klimatizatua, igerileku txikia, muskulazio eta
-                    kardio gimnasioa eta pabiloi polikiroldegia ditu.</p>
-                <a href="altzaga-eu.html" class="btn" style="margin-top: 1rem;">Xehetasun gehiago</a>
+        <div class="facilities-container">
+            <!-- Columna Izquierda: Mapa (70%) -->
+            <div class="map-column">
+                <div id="map" style="height: 600px; width: 100%; border-radius: var(--border-radius); box-shadow: var(--box-shadow); z-index: 1;"></div>
             </div>
 
-            <div class="card">
-                <h3><i class="fas fa-building"></i> Astrabudua Kiroldegia</h3>
-                <p>Instalazio modernoa jarduera gidatuetarako (pilates, yoga, zumba) areto zabalekin, fitness gunearekin
-                    eta frontoi estaliarekin.</p>
-                <a href="astrabudua-eu.html" class="btn" style="margin-top: 1rem;">Xehetasun gehiago</a>
-            </div>
+            <!-- Columna Derecha: Lista Simplificada (30%) -->
+            <div class="facilities-list-column">
+                <div class="mini-card">
+                    <h3>Altzaga Kiroldegia</h3>
+                    <a href="altzaga-eu.html" class="btn btn-small">Xehetasun gehiago</a>
+                </div>
 
-            <div class="card">
-                <h3><i class="fas fa-futbol"></i> Arteagako Futbol Zelaia</h3>
-                <p>Belar artifizialeko zelaia, estalitako harmailekin eta aldagela berrituekin. Bertako txapelketen eta
-                    entrenamenduen egoitza.</p>
-                <a href="arteaga-eu.html" class="btn" style="margin-top: 1rem;">Xehetasun gehiago</a>
-            </div>
+                <div class="mini-card">
+                    <h3>Astrabudua Kiroldegia</h3>
+                    <a href="astrabudua-eu.html" class="btn btn-small">Xehetasun gehiago</a>
+                </div>
 
-            <div class="card">
-                <h3><i class="fas fa-futbol"></i> Astrabuduako Futbol Zelaia</h3>
-                <p>Oinarrizko eta afizionatu mailako futbolean praktikatzeko lehen mailako ekipamendua, gaueko
-                    partidetarako LED argiztapenarekin.</p>
-                <a href="astrabudua-zelaia.html" class="btn" style="margin-top: 1rem;">Xehetasun gehiago</a>
-            </div>
+                <div class="mini-card">
+                    <h3>Arteagako Futbol Zelaia</h3>
+                    <a href="arteaga-eu.html" class="btn btn-small">Xehetasun gehiago</a>
+                </div>
 
-            <div class="card">
-                <h3><i class="fas fa-water"></i> Lutxanako Arraun Pabiloia</h3>
-                <p>Ur kiroletan eta arraunean espezializatutako zentroa. Itsasadarrera zuzeneko sarbidea eta
-                    itsasontzien biltegiratze gunea.</p>
-                <a href="lutxana-eu.html" class="btn" style="margin-top: 1rem;">Xehetasun gehiago</a>
+                <div class="mini-card">
+                    <h3>Astrabuduako Futbol Zelaia</h3>
+                    <a href="astrabudua-zelaia.html" class="btn btn-small">Xehetasun gehiago</a>
+                </div>
+
+                <div class="mini-card">
+                    <h3>Lutxanako Arraun Pabilioia</h3>
+                    <a href="lutxana-eu.html" class="btn btn-small">Xehetasun gehiago</a>
+                </div>
             </div>
         </div>
     </main>
@@ -104,11 +102,6 @@
             &copy; 2026 Erandioko Kirolak. Eskubide guztiak erreserbatuta.
         </div>
     </footer>
-
-    <section style="max-width: 1200px; margin: 4rem auto; padding: 0 2rem;">
-        <h2 class="section-title">Instalazioen Mapa</h2>
-        <div id="map" style="height: 500px; width: 100%; border-radius: var(--border-radius); box-shadow: var(--box-shadow); margin-top: 2rem; z-index: 1;"></div>
-    </section>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="script.js"></script>
