@@ -43,106 +43,114 @@
     <main>
         <h1 class="section-title">Contacto General</h1>
         <p style="text-align: center; margin-bottom: 2rem;">Estamos a tu disposición para cualquier consulta, duda o
-            sugerencia. Puedes ponerte en contacto con nosotros por los siguientes canales.</p>
+            sugerencia.</p>
 
-        <div class="grid" style="align-items: start;">
-            <div class="card">
-                <h3><i class="fas fa-address-book"></i> Información de Contacto</h3>
-
-                <div style="margin-top: 1.5rem;">
-                    <h4 style="margin-bottom: 0.5rem; color: var(--text-color);">Teléfono</h4>
-                    <p
-                        style="font-size: 1.2rem; color: var(--primary-color); font-weight: bold; margin-bottom: 1.5rem;">
-                        94 467 05 11 <br> 94 467 34 61</p>
-
-                    <h4 style="margin-bottom: 0.5rem; color: var(--text-color);">Correo Electrónico</h4>
-                    <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
-                        <a href="mailto:erandiokirolak@erandio.eus"
-                            style="color: var(--secondary-color); text-decoration: none; font-weight: bold;">erandiokirolak@erandio.eus</a>
-                    </p>
-
-                    <h4 style="margin-bottom: 0.5rem; color: var(--text-color);">Dirección</h4>
-                    <p>
-                        Polideportivo Altzaga<br>
-                        San Agustín, s/n<br>
-                        48950 Erandio (Bizkaia)
-                    </p>
-                </div>
+        <!-- Bloque Superior: Información de Contacto en 3 columnas -->
+        <div class="grid" style="margin-bottom: 3rem;">
+            <div class="card" style="text-align: center;">
+                <i class="fas fa-phone"
+                    style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1.5rem;"></i>
+                <h3 style="margin-bottom: 1rem;">Teléfono</h3>
+                <p style="font-size: 1.1rem; color: var(--primary-color); font-weight: bold;">
+                    94 467 05 11 <br> 94 467 34 61
+                </p>
             </div>
 
-            <div class="card">
-                <h3><i class="fas fa-envelope"></i> Formulario de Mensaje</h3>
-                <iframe id="JotFormIFrame-200692976937067" title="Contacto Erandio Kirolak"
-                    onload="window.parent.scrollTo(0,0)" allowtransparency="true" allowfullscreen="true"
-                    allow="geolocation; microphone; camera" src="https://form.jotform.com/200692976937067"
-                    frameborder="0" style="min-width:100%;height:539px;border:none;" scrolling="no">
-                </iframe>
-                <script type="text/javascript">
-                    var ifr = document.getElementById("JotFormIFrame-200692976937067");
-                    if (ifr) {
-                        var src = ifr.src;
-                        var iframeParams = [];
-                        if (window.location.href && window.location.href.indexOf("?") > -1) {
-                            iframeParams = iframeParams.concat(window.location.href.substr(window.location.href.indexOf("?") + 1).split('&'));
-                        }
-                        if (src && src.indexOf("?") > -1) {
-                            iframeParams = iframeParams.concat(src.substr(src.indexOf("?") + 1).split("&"));
-                            src = src.substr(0, src.indexOf("?"));
-                        }
-                        iframeParams.push("isIframeEmbed=1");
-                        ifr.src = src + "?" + iframeParams.join('&');
-                    }
-                    window.handleIFrameMessage = function (e) {
-                        if (typeof e.data === 'object') { return; }
-                        var args = e.data.split(":");
-                        if (args.length > 2) { iframe = document.getElementById("JotFormIFrame-" + args[(args.length - 1)]); } else { iframe = document.getElementById("JotFormIFrame"); }
-                        if (!iframe) { return; }
-                        switch (args[0]) {
-                            case "scrollIntoView":
-                                iframe.scrollIntoView();
-                                break;
-                            case "setHeight":
-                                iframe.style.height = args[1] + "px";
-                                break;
-                            case "collapseErrorPage":
-                                if (iframe.clientHeight > window.innerHeight) {
-                                    iframe.style.height = window.innerHeight + "px";
-                                }
-                                break;
-                            case "reloadPage":
-                                window.location.reload();
-                                break;
-                            case "loadScript":
-                                var src = args[1];
-                                if (args.length > 3) {
-                                    src = args[1] + ':' + args[2];
-                                }
-                                var script = document.createElement('script');
-                                script.src = src;
-                                script.type = 'text/javascript';
-                                document.body.appendChild(script);
-                                break;
-                            case "exitFullscreen":
-                                if (window.document.exitFullscreen) window.document.exitFullscreen();
-                                else if (window.document.mozCancelFullScreen) window.document.mozCancelFullScreen();
-                                else if (window.document.mozCancelFullscreen) window.document.mozCancelFullscreen();
-                                else if (window.document.webkitExitFullscreen) window.document.webkitExitFullscreen();
-                                else if (window.document.msExitFullscreen) window.document.msExitFullscreen();
-                                break;
-                        }
-                        var isJotForm = (e.origin.indexOf("jotform") > -1) ? true : false;
-                        if (isJotForm && "contentWindow" in iframe && "postMessage" in iframe.contentWindow) {
-                            var urls = { "patchBug": true, "patchAVW": true };
-                            iframe.contentWindow.postMessage(JSON.stringify({ "type": "urls", "value": urls }), "*");
-                        }
-                    };
-                    if (window.addEventListener) {
-                        window.addEventListener("message", handleIFrameMessage, false);
-                    } else if (window.attachEvent) {
-                        window.attachEvent("onmessage", handleIFrameMessage);
-                    }
-                </script>
+            <div class="card" style="text-align: center;">
+                <i class="fas fa-envelope"
+                    style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1.5rem;"></i>
+                <h3 style="margin-bottom: 1rem;">Correo Electrónico</h3>
+                <p style="font-size: 1.1rem;">
+                    <a href="mailto:erandiokirolak@erandio.eus"
+                        style="color: var(--secondary-color); text-decoration: none; font-weight: bold;">erandiokirolak@erandio.eus</a>
+                </p>
             </div>
+
+            <div class="card" style="text-align: center;">
+                <i class="fas fa-map-marker-alt"
+                    style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1.5rem;"></i>
+                <h3 style="margin-bottom: 1rem;">Dirección</h3>
+                <p style="font-size: 1rem;">
+                    Polideportivo Altzaga<br>
+                    San Agustín, s/n<br>
+                    48950 Erandio (Bizkaia)
+                </p>
+            </div>
+        </div>
+
+        <!-- Bloque Inferior: Formulario de JotForm -->
+        <div class="card">
+            <h3 style="margin-bottom: 1.5rem;"><i class="fas fa-envelope"></i> Formulario de Mensaje</h3>
+            <iframe id="JotFormIFrame-200692976937067" title="Contacto Erandio Kirolak"
+                onload="window.parent.scrollTo(0,0)" allowtransparency="true" allowfullscreen="true"
+                allow="geolocation; microphone; camera" src="https://form.jotform.com/200692976937067" frameborder="0"
+                style="min-width:100%;height:539px;border:none;" scrolling="no">
+            </iframe>
+            <script type="text/javascript">
+                var ifr = document.getElementById("JotFormIFrame-200692976937067");
+                if (ifr) {
+                    var src = ifr.src;
+                    var iframeParams = [];
+                    if (window.location.href && window.location.href.indexOf("?") > -1) {
+                        iframeParams = iframeParams.concat(window.location.href.substr(window.location.href.indexOf("?") + 1).split('&'));
+                    }
+                    if (src && src.indexOf("?") > -1) {
+                        iframeParams = iframeParams.concat(src.substr(src.indexOf("?") + 1).split("&"));
+                        src = src.substr(0, src.indexOf("?"));
+                    }
+                    iframeParams.push("isIframeEmbed=1");
+                    ifr.src = src + "?" + iframeParams.join('&');
+                }
+                window.handleIFrameMessage = function (e) {
+                    if (typeof e.data === 'object') { return; }
+                    var args = e.data.split(":");
+                    if (args.length > 2) { iframe = document.getElementById("JotFormIFrame-" + args[(args.length - 1)]); } else { iframe = document.getElementById("JotFormIFrame"); }
+                    if (!iframe) { return; }
+                    switch (args[0]) {
+                        case "scrollIntoView":
+                            iframe.scrollIntoView();
+                            break;
+                        case "setHeight":
+                            iframe.style.height = args[1] + "px";
+                            break;
+                        case "collapseErrorPage":
+                            if (iframe.clientHeight > window.innerHeight) {
+                                iframe.style.height = window.innerHeight + "px";
+                            }
+                            break;
+                        case "reloadPage":
+                            window.location.reload();
+                            break;
+                        case "loadScript":
+                            var src = args[1];
+                            if (args.length > 3) {
+                                src = args[1] + ':' + args[2];
+                            }
+                            var script = document.createElement('script');
+                            script.src = src;
+                            script.type = 'text/javascript';
+                            document.body.appendChild(script);
+                            break;
+                        case "exitFullscreen":
+                            if (window.document.exitFullscreen) window.document.exitFullscreen();
+                            else if (window.document.mozCancelFullScreen) window.document.mozCancelFullScreen();
+                            else if (window.document.mozCancelFullscreen) window.document.mozCancelFullscreen();
+                            else if (window.document.webkitExitFullscreen) window.document.webkitExitFullscreen();
+                            else if (window.document.msExitFullscreen) window.document.msExitFullscreen();
+                            break;
+                    }
+                    var isJotForm = (e.origin.indexOf("jotform") > -1) ? true : false;
+                    if (isJotForm && "contentWindow" in iframe && "postMessage" in iframe.contentWindow) {
+                        var urls = { "patchBug": true, "patchAVW": true };
+                        iframe.contentWindow.postMessage(JSON.stringify({ "type": "urls", "value": urls }), "*");
+                    }
+                };
+                if (window.addEventListener) {
+                    window.addEventListener("message", handleIFrameMessage, false);
+                } else if (window.attachEvent) {
+                    window.attachEvent("onmessage", handleIFrameMessage);
+                }
+            </script>
         </div>
     </main>
 
