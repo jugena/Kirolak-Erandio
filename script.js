@@ -197,7 +197,7 @@ function initBackoffice() {
         tableBody.innerHTML = news.map((item, index) => `
             <tr style="${item.disabled ? 'opacity: 0.6; background: #f9f9f9;' : ''}">
                 <td style="font-weight: 500;">${item.title_es || item.title}</td>
-                <td>${formatDate(item.date).split(' de ')[0]}...</td>
+                <td>${formatDate(item.date)}</td>
                 <td style="text-align: center;">
                     <input type="checkbox" ${item.on_home ? 'checked' : ''} onclick="fastToggle('${item.id}', 'on_home')" title="Poner en Home">
                 </td>
