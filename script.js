@@ -264,6 +264,16 @@ function initBackoffice() {
         document.getElementById('news-disabled').checked = false;
         quillEs.setContents([]);
         quillEu.setContents([]);
+        document.getElementById('html-es').value = '';
+        document.getElementById('html-eu').value = '';
+        document.getElementById('html-es').style.display = 'none';
+        document.getElementById('html-eu').style.display = 'none';
+        document.getElementById('editor-es').style.display = 'block';
+        document.getElementById('editor-eu').style.display = 'block';
+        document.querySelector('.ql-toolbar').style.display = 'block'; // This assumes multiple toolbars might need handling
+        // For multiple editors, Quill creates multiple toolbars. We'll handle them carefully:
+        document.querySelectorAll('.ql-toolbar').forEach(tb => tb.style.display = 'block');
+
         document.getElementById('submit-btn').innerHTML = '<i class="fas fa-save"></i> Publicar Noticia';
         document.getElementById('cancel-edit').style.display = 'none';
     };
@@ -275,6 +285,15 @@ function initBackoffice() {
         const title_eu = document.getElementById('news-title-eu').value;
         const on_home = document.getElementById('news-on-home').checked;
         const disabled = document.getElementById('news-disabled').checked;
+
+        // Sync HTML if textarea is visible
+        if (document.getElementById('html-es').style.display === 'block') {
+            quillEs.root.innerHTML = document.getElementById('html-es').value;
+        }
+        if (document.getElementById('html-eu').style.display === 'block') {
+            quillEu.root.innerHTML = document.getElementById('html-eu').value;
+        }
+
         const content_es = quillEs.root.innerHTML;
         const content_eu = quillEu.root.innerHTML;
 
@@ -301,6 +320,29 @@ function initBackoffice() {
 
     renderTable();
     window.translateContent = translateContent;
+
+    window.toggleHtml = function (lang) {
+        const editorDiv = document.getElementById(`editor-${lang}`);
+        const htmlArea = document.getElementById(`html-${lang}`);
+        const quill = lang === 'es' ? quillEs : quillEu;
+        const toolbar = editorDiv.previousElementSibling; // Quill puts toolbar before editor
+
+        if (htmlArea.style.display === 'none') {
+            htmlArea.value = quill.root.innerHTML;
+            htmlArea.style.display = 'block';
+            editorDiv.style.display = 'none';
+            if (toolbar && toolbar.classList.contains('ql-toolbar')) {
+                toolbar.style.display = 'none';
+            }
+        } else {
+            quill.root.innerHTML = htmlArea.value;
+            htmlArea.style.display = 'none';
+            editorDiv.style.display = 'block';
+            if (toolbar && toolbar.classList.contains('ql-toolbar')) {
+                toolbar.style.display = 'block';
+            }
+        }
+    };
 }
 
 // Populate sample news if empty
