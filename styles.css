@@ -536,16 +536,15 @@ footer {
         padding: 1rem;
     }
 }
+
 /* Ocultar opciones de Abono y Documentación según petición del usuario */
-nav li:has(a[href*="abono"]),
-nav li:has(a[href*="abonamenduak"]),
-nav li:has(a[href*="documentacion"]),
-nav li:has(a[href*="dokumentazioa"]),
-.footer-section a[href*="abono"],
-.footer-section a[href*="abonamenduak"],
-.footer-section a[href*="documentacion"],
-.footer-section a[href*="dokumentazioa"],
-.hero a[href*="abono"],
-.hero a[href*="abonamenduak"] {
+nav li:has(a[href="abonos.html"]),
+nav li:has(a[href="abonamenduak.html"]),
+nav li:has(a[href="documentacion.html"]),
+nav li:has(a[href="dokumentazioa.html"]),
+.footer-section a[href="abonos.html"],
+.footer-section a[href="abonamenduak.html"],
+.footer-section a[href="documentacion.html"],
+.footer-section a[href="dokumentazioa.html"] {
     display: none !important;
 }
