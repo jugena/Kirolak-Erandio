@@ -195,16 +195,18 @@ function initBackoffice() {
     function renderTable() {
         const news = getNews();
         tableBody.innerHTML = news.map((item, index) => `
-            <tr style="${item.disabled ? 'opacity: 0.5; background: #f9f9f9;' : ''}">
-                <td>
-                    ${item.title_es || item.title}
-                    ${item.on_home ? '<br><small style="color:var(--secondary-color); font-weight:bold;"><i class="fas fa-home"></i> En Carrusel Home</small>' : ''}
-                    ${item.disabled ? '<br><small style="color:#d63031; font-weight:bold;"><i class="fas fa-eye-slash"></i> Deshabilitada</small>' : ''}
+            <tr style="${item.disabled ? 'opacity: 0.6; background: #f9f9f9;' : ''}">
+                <td style="font-weight: 500;">${item.title_es || item.title}</td>
+                <td>${formatDate(item.date).split(' de ')[0]}...</td>
+                <td style="text-align: center;">
+                    <input type="checkbox" ${item.on_home ? 'checked' : ''} onclick="fastToggle('${item.id}', 'on_home')" title="Poner en Home">
                 </td>
-                <td>${formatDate(item.date)}</td>
-                <td>
-                    <button class="btn btn-small" style="background:#3498db;" onclick="duplicateNews('${item.id}')" title="Duplicar"><i class="fas fa-copy"></i></button>
-                    <button class="btn btn-small" style="background:#2ecc71;" onclick="editNews('${item.id}')" title="Editar"><i class="fas fa-edit"></i></button>
+                <td style="text-align: center;">
+                    <input type="checkbox" ${item.disabled ? 'checked' : ''} onclick="fastToggle('${item.id}', 'disabled')" title="Ocultar noticia">
+                </td>
+                <td style="text-align: center;">
+                    <button class="btn btn-small" style="background:#3498db; margin-right:2px;" onclick="duplicateNews('${item.id}')" title="Duplicar"><i class="fas fa-copy"></i></button>
+                    <button class="btn btn-small" style="background:#2ecc71; margin-right:2px;" onclick="editNews('${item.id}')" title="Editar"><i class="fas fa-edit"></i></button>
                     <button class="btn btn-small btn-danger" onclick="deleteNews('${item.id}')" title="Eliminar"><i class="fas fa-trash"></i></button>
                 </td>
             </tr>
@@ -237,6 +239,19 @@ function initBackoffice() {
         saveNews(news);
         renderTable();
         alert('Noticia duplicada con éxito. Puedes encontrarla al principio de la lista.');
+    };
+
+    window.fastToggle = function (id, field) {
+        let news = getNews();
+        const index = news.findIndex(n => n.id === id);
+        if (index !== -1) {
+            news[index][field] = !news[index][field];
+            saveNews(news);
+            renderTable();
+            // Re-load news everywhere if needed
+            loadLatestNews();
+            loadAllNews();
+        }
     };
 
     window.editNews = function (id) {
