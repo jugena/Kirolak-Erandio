@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="eu">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Backoffice Noticias | Erandio Kirolak</title>
+    <title>Berrien Backofficea | Erandio Kirolak</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Include Quill for Rich Text Editor -->
@@ -41,24 +41,24 @@
 <body style="background-color: #f0f2f5;">
     <script>
         (function () {
-            const password = prompt("Ingrese la contraseña de administrador:");
+            const password = prompt("Sartu administratzailearen pasahitza:");
             if (password !== "01_kirolak_01") {
-                alert("Acceso denegado.");
-                window.location.href = "index.html";
+                alert("Sarbidea ukatuta.");
+                window.location.href = "index-eu.html";
             }
         })();
     </script>
 
     <div class="backoffice-header">
-        <h1><i class="fas fa-tools"></i> Panel de Administración (Backoffice)</h1>
+        <h1><i class="fas fa-tools"></i> Kudeaketa Panela (Backoffice)</h1>
         <div style="display: flex; gap: 20px; align-items: center;">
             <div class="lang-switcher"
                 style="background: rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 20px;">
-                <a href="backoffice-eu.html" style="color: white; text-decoration: none;">EU</a>
+                <a href="backoffice-eu.html" style="font-weight: bold; color: var(--secondary-color);">EU</a>
                 <span style="color: #666; margin: 0 5px;">|</span>
-                <a href="backoffice.html" style="font-weight: bold; color: var(--secondary-color);">ES</a>
+                <a href="backoffice.html" style="color: white; text-decoration: none;">ES</a>
             </div>
-            <a href="index.html"><i class="fas fa-arrow-left"></i> Volver a la web</a>
+            <a href="index-eu.html"><i class="fas fa-arrow-left"></i> Webgunera itzuli</a>
         </div>
     </div>
 
@@ -66,7 +66,7 @@
         <div class="card" style="width: 100%; margin: 0 auto; margin-top: 2rem;">
             <h2
                 style="color: var(--primary-color); margin-bottom: 1.5rem; border-bottom: 2px solid #eee; padding-bottom: 0.5rem;">
-                Publicar Nueva Noticia</h2>
+                Berri berria argitaratu</h2>
 
             <form id="news-form">
                 <input type="hidden" id="news-id">
@@ -74,32 +74,32 @@
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
                     <!-- Columna Castellano -->
                     <div>
-                        <h3 style="margin-bottom: 1rem; color: #666;">Versión en Castellano</h3>
+                        <h3 style="margin-bottom: 1rem; color: #666;">Gaztelaniazko bertsioa</h3>
                         <div class="form-group">
-                            <label for="news-title-es">Título (ES)</label>
+                            <label for="news-title-es">Izenburua (ES)</label>
                             <input type="text" id="news-title-es" class="form-control"
                                 placeholder="Título en castellano" required>
                         </div>
                         <div class="form-group">
-                            <label>Contenido (ES)</label>
+                            <label>Edukia (ES)</label>
                             <div id="editor-es" style="height: 200px;"></div>
                             <textarea id="html-es" class="form-control"
                                 style="height: 200px; display: none; font-family: monospace; font-size: 0.9rem; margin-top: 1px;"></textarea>
                         </div>
                         <div style="display: flex; gap: 10px; margin-bottom: 1rem;">
                             <button type="button" class="btn btn-admin-outline btn-small" onclick="toggleHtml('es')">
-                                <i class="fas fa-code"></i> Ver/Editar HTML
+                                <i class="fas fa-code"></i> HTML ikusi/editatu
                             </button>
                             <button type="button" class="btn btn-admin-outline btn-small"
                                 onclick="translateContent('es', 'eu')">
-                                Traducir a Euskera <i class="fas fa-arrow-right"></i>
+                                Euskarara itzuli <i class="fas fa-arrow-right"></i>
                             </button>
                         </div>
                     </div>
 
                     <!-- Columna Euskera -->
                     <div>
-                        <h3 style="margin-bottom: 1rem; color: #666;">Versión en Euskera</h3>
+                        <h3 style="margin-bottom: 1rem; color: #666;">Euskarazko bertsioa</h3>
                         <div class="form-group">
                             <label for="news-title-eu">Izenburua (EU)</label>
                             <input type="text" id="news-title-eu" class="form-control" placeholder="Izenburua euskaraz"
@@ -114,7 +114,7 @@
                         <div style="display: flex; gap: 10px; margin-bottom: 1rem;">
                             <button type="button" class="btn btn-admin-outline btn-small"
                                 onclick="translateContent('eu', 'es')">
-                                <i class="fas fa-arrow-left"></i> Traducir a Castellano
+                                <i class="fas fa-arrow-left"></i> Gaztelaniara itzuli
                             </button>
                             <button type="button" class="btn btn-admin-outline btn-small" onclick="toggleHtml('eu')">
                                 <i class="fas fa-code"></i> HTML ikusi/editatu
@@ -127,22 +127,21 @@
                     style="margin-top: 1.5rem; display: flex; gap: 2rem; background: #fff; padding: 1rem; border-radius: var(--border-radius); border: 1px solid #ddd;">
                     <div style="display: flex; align-items: center; gap: 8px;">
                         <input type="checkbox" id="news-on-home" style="width: 20px; height: 20px; cursor: pointer;">
-                        <label for="news-on-home" style="font-weight: bold; cursor: pointer;">Publicar en Carrusel de
-                            Inicio</label>
+                        <label for="news-on-home" style="font-weight: bold; cursor: pointer;">Hasierako karruselan
+                            argitaratu</label>
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
                         <input type="checkbox" id="news-disabled" style="width: 20px; height: 20px; cursor: pointer;">
-                        <label for="news-disabled"
-                            style="font-weight: bold; cursor: pointer; color: #d63031;">Deshabilitar Noticia (No
-                            aparecerá en la web)</label>
+                        <label for="news-disabled" style="font-weight: bold; cursor: pointer; color: #d63031;">Berria
+                            desgaitu (Ez da webgunean agertuko)</label>
                     </div>
                 </div>
 
                 <div style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 1.5rem; text-align: center;">
-                    <button type="submit" id="submit-btn" class="btn"><i class="fas fa-save"></i> Publicar
-                        Noticia</button>
+                    <button type="submit" id="submit-btn" class="btn"><i class="fas fa-save"></i> Berria
+                        argitaratu</button>
                     <button type="button" id="cancel-edit" class="btn btn-admin-outline"
-                        style="display: none; margin-left:1rem;">Cancelar Edición</button>
+                        style="display: none; margin-left:1rem;">Edizioa bertan behera utzi</button>
                 </div>
             </form>
         </div>
@@ -150,16 +149,16 @@
         <div class="card" style="width: 100%; margin: 2rem auto;">
             <h2
                 style="color: var(--primary-color); margin-bottom: 1.5rem; border-bottom: 2px solid #eee; padding-bottom: 0.5rem;">
-                Gestión de Noticias Publicadas</h2>
+                Argitaratutako berrien kudeaketa</h2>
 
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Título</th>
-                        <th>Fecha</th>
-                        <th width="80" style="text-align: center;">En Home</th>
-                        <th width="80" style="text-align: center;">Ocultar</th>
-                        <th width="120" style="text-align: center;">Acciones</th>
+                        <th>Izenburua</th>
+                        <th>Data</th>
+                        <th width="80" style="text-align: center;">Home-n</th>
+                        <th width="80" style="text-align: center;">Ezkutatu</th>
+                        <th width="120" style="text-align: center;">Ekintzak</th>
                     </tr>
                 </thead>
                 <tbody id="news-table-body">
