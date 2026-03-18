@@ -203,8 +203,9 @@ function initBackoffice() {
                 </td>
                 <td>${formatDate(item.date)}</td>
                 <td>
-                    <button class="btn btn-small" style="background:#2ecc71;" onclick="editNews('${item.id}')"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-small btn-danger" onclick="deleteNews('${item.id}')"><i class="fas fa-trash"></i></button>
+                    <button class="btn btn-small" style="background:#3498db;" onclick="duplicateNews('${item.id}')" title="Duplicar"><i class="fas fa-copy"></i></button>
+                    <button class="btn btn-small" style="background:#2ecc71;" onclick="editNews('${item.id}')" title="Editar"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-small btn-danger" onclick="deleteNews('${item.id}')" title="Eliminar"><i class="fas fa-trash"></i></button>
                 </td>
             </tr>
         `).join('');
@@ -217,6 +218,25 @@ function initBackoffice() {
             saveNews(news);
             renderTable();
         }
+    };
+
+    window.duplicateNews = function (id) {
+        const news = getNews();
+        const item = news.find(n => n.id === id);
+        if (!item) return;
+
+        const newItem = {
+            ...item,
+            id: Date.now().toString(),
+            title_es: (item.title_es || item.title) + " (Copia)",
+            title_eu: (item.title_eu ? item.title_eu + " (Kopia)" : ""),
+            date: new Date().toISOString()
+        };
+
+        news.unshift(newItem);
+        saveNews(news);
+        renderTable();
+        alert('Noticia duplicada con éxito. Puedes encontrarla al principio de la lista.');
     };
 
     window.editNews = function (id) {
