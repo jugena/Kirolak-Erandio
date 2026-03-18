@@ -4,9 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berriak | Erandioko Kirolak</title>
+    <title>Cookien Politika | Erandio Kirolak</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .policy-content h1 {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .policy-content h2 {
+            color: var(--primary-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .policy-content p {
+            margin-bottom: 1rem;
+        }
+
+        .policy-content ul {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        .policy-content li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -17,13 +44,12 @@
         </div>
         <div class="top-bar-actions">
             <div class="lang-switcher">
-                <a href="berriak.html" style="text-decoration: underline;">Euskara</a>
-                <a href="noticias.html">Español</a>
+                <a href="cookien-politika.html" style="text-decoration: underline;">Euskara</a>
+                <a href="politica-cookies.html">Español</a>
             </div>
             <a href="https://erreserbakirolak.erandio.eus/online/Site/Index?idioma=EU" class="btn-mi-zona">Nire
                 Gunea</a>
         </div>
-    </div>
     </div>
     <header>
         <div class="nav-container">
@@ -42,10 +68,26 @@
     </header>
 
     <main>
-        <h1 class="section-title">Azken Berriak</h1>
+        <div class="policy-content card">
+            <h1>COOKIEN POLITIKA</h1>
+            <h2>ZER DIRA COOKIE-AK?</h2>
+            <p>Cookie-ak testu artxibo txikiak dira, zure ordenagailuan deskargatzen direnak webgune batera sartzen
+                zarenean.</p>
+            <p>Ez dira birus gaiztoak, baizik eta Interneten era askotako zerbitzuak emateko funtsezko papera betetzen
+                duten tresnak. Webean zein hizkuntzatan nabigatu nahi duzun gogoratzeko, webgunearen funtzionaltasuna
+                optimizatuko duten estatistikak jasotzeko edo zure sare sozialetan gure edukiak partekatzeko balio dute,
+                besteak beste.</p>
 
-        <div id="all-news-container-eu" style="max-width: 900px; margin: 0 auto;">
-            <!-- Javascript populate from script -->
+            <h2>NOLA DESAKTIBATU COOKIE-AK</h2>
+            <p>Nabigatzaile gehienek cookie-ak automatikoki onartzen dituzten arren, nabigatzailearen konfigurazioa
+                aldatu dezakezu zure ekipoan instalatuta daudenak baimentzeko, blokeatzeko edo ezabatzeko:</p>
+            <ul>
+                <li>Chrome</li>
+                <li>Microsoft Explorer</li>
+                <li>Firefox</li>
+                <li>Safari</li>
+                <li>Opera</li>
+            </ul>
         </div>
     </main>
 
@@ -74,8 +116,6 @@
     </footer>
 
     <script src="script.js"></script>
-
-    <a href="backoffice.html" style="display: none;"></a>
 </body>
 
 </html>
