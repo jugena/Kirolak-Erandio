@@ -77,6 +77,14 @@ body.home-page {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%), url('irudiak/Kirola_05.png') center/cover no-repeat fixed;
 }
 
+body.news-page {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%), url('irudiak/Kirola_03.jpg') center/cover no-repeat fixed;
+}
+
+body.contact-page {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%), url('irudiak/Kirola_04.png') center/cover no-repeat fixed;
+}
+
 header {
     background-color: var(--header-bg);
     box-shadow: var(--box-shadow);
