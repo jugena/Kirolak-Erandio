@@ -537,14 +537,18 @@ footer {
     }
 }
 
-/* Ocultar opciones de Abono y Documentación según petición del usuario */
+/* Ocultar opciones de Abono, Documentación e Instalaciones según petición del usuario */
 nav li:has(a[href="abonos.html"]),
 nav li:has(a[href="abonamenduak.html"]),
 nav li:has(a[href="documentacion.html"]),
 nav li:has(a[href="dokumentazioa.html"]),
+nav li:has(a[href="instalaciones.html"]),
+nav li:has(a[href="instalazioak.html"]),
 .footer-section a[href="abonos.html"],
 .footer-section a[href="abonamenduak.html"],
 .footer-section a[href="documentacion.html"],
-.footer-section a[href="dokumentazioa.html"] {
+.footer-section a[href="dokumentazioa.html"],
+.footer-section a[href="instalaciones.html"],
+.footer-section a[href="instalazioak.html"] {
     display: none !important;
 }
