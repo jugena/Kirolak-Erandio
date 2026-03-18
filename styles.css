@@ -560,3 +560,50 @@ nav li:has(a[href="instalazioak.html"]),
 .footer-section a[href="instalazioak.html"] {
     display: none !important;
 }
+
+/* News Carousel */
+.carousel-active {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.carousel-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #f8f9fa;
+    padding: 5px 15px;
+    border-radius: 30px;
+    border: 1px solid #eee;
+}
+
+.carousel-btn {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 5px;
+    transition: transform 0.2s;
+}
+
+.carousel-btn:hover {
+    transform: scale(1.2);
+    color: var(--secondary-color);
+}
+
+.data-table small {
+    display: block;
+    margin-top: 4px;
+}

@@ -40,7 +40,7 @@
 
 <body style="background-color: #f0f2f5;">
     <script>
-        (function() {
+        (function () {
             const password = prompt("Ingrese la contraseña de administrador:");
             if (password !== "01_kirolak_01") {
                 alert("Acceso denegado.");
@@ -62,14 +62,15 @@
 
             <form id="news-form">
                 <input type="hidden" id="news-id">
-                
+
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
                     <!-- Columna Castellano -->
                     <div>
                         <h3 style="margin-bottom: 1rem; color: #666;">Versión en Castellano</h3>
                         <div class="form-group">
                             <label for="news-title-es">Título (ES)</label>
-                            <input type="text" id="news-title-es" class="form-control" placeholder="Título en castellano" required>
+                            <input type="text" id="news-title-es" class="form-control"
+                                placeholder="Título en castellano" required>
                         </div>
                         <div class="form-group">
                             <label>Contenido (ES)</label>
@@ -85,7 +86,8 @@
                         <h3 style="margin-bottom: 1rem; color: #666;">Versión en Euskera</h3>
                         <div class="form-group">
                             <label for="news-title-eu">Izenburua (EU)</label>
-                            <input type="text" id="news-title-eu" class="form-control" placeholder="Izenburua euskaraz" required>
+                            <input type="text" id="news-title-eu" class="form-control" placeholder="Izenburua euskaraz"
+                                required>
                         </div>
                         <div class="form-group">
                             <label>Edukia (EU)</label>
@@ -97,9 +99,26 @@
                     </div>
                 </div>
 
+                <div
+                    style="margin-top: 1.5rem; display: flex; gap: 2rem; background: #fff; padding: 1rem; border-radius: var(--border-radius); border: 1px solid #ddd;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox" id="news-on-home" style="width: 20px; height: 20px; cursor: pointer;">
+                        <label for="news-on-home" style="font-weight: bold; cursor: pointer;">Publicar en Carrusel de
+                            Inicio</label>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox" id="news-disabled" style="width: 20px; height: 20px; cursor: pointer;">
+                        <label for="news-disabled"
+                            style="font-weight: bold; cursor: pointer; color: #d63031;">Deshabilitar Noticia (No
+                            aparecerá en la web)</label>
+                    </div>
+                </div>
+
                 <div style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 1.5rem; text-align: center;">
-                    <button type="submit" id="submit-btn" class="btn"><i class="fas fa-save"></i> Publicar Noticia</button>
-                    <button type="button" id="cancel-edit" class="btn btn-outline" style="display: none; margin-left:1rem;">Cancelar Edición</button>
+                    <button type="submit" id="submit-btn" class="btn"><i class="fas fa-save"></i> Publicar
+                        Noticia</button>
+                    <button type="button" id="cancel-edit" class="btn btn-outline"
+                        style="display: none; margin-left:1rem;">Cancelar Edición</button>
                 </div>
             </form>
         </div>
