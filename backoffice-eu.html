@@ -39,14 +39,42 @@
 </head>
 
 <body style="background-color: #f0f2f5;">
+    <!-- Login Overlay -->
+    <div id="login-overlay"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--primary-color); z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+        <div
+            style="background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); text-align: center; max-width: 400px; width: 90%;">
+            <div style="margin-bottom: 1.5rem;">
+                <img src="irudiak/logo.png" alt="Erandio Kirolak" style="height: 60px;">
+            </div>
+            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem; font-family: 'Inter', sans-serif;">Sarrera Mugatua</h2>
+            <input type="password" id="login-password" placeholder="Sartzeko pasahitza"
+                style="width: 100%; padding: 1rem; border: 2px solid #e0e0e0; border-radius: 10px; margin-bottom: 1.5rem; font-size: 1rem; font-family: 'Inter', sans-serif; box-sizing: border-box;">
+            <button onclick="checkPassword()" class="btn"
+                style="width: 100%; padding: 1rem; font-size: 1.1rem; border: none; cursor: pointer;">Sartu</button>
+            <p id="login-error"
+                style="color: #e74c3c; margin-top: 1rem; display: none; font-size: 0.9rem; font-weight: 600;">Pasahitz okerra</p>
+            <div style="margin-top: 1.5rem;">
+                <a href="index-eu.html" style="color: #7f8c8d; text-decoration: none; font-size: 0.9rem;">Webgunera itzuli</a>
+            </div>
+        </div>
+    </div>
     <script>
-        (function () {
-            const password = prompt("Sartu administratzailearen pasahitza:");
-            if (password !== "01_kirolak_01") {
-                alert("Sarbidea ukatuta.");
-                window.location.href = "index-eu.html";
+        function checkPassword() {
+            if (document.getElementById('login-password').value === "erandio2026") {
+                document.getElementById('login-overlay').style.display = 'none';
+            } else {
+                document.getElementById('login-error').style.display = 'block';
             }
-        })();
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('login-password').addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    checkPassword();
+                }
+            });
+            document.getElementById('login-password').focus();
+        });
     </script>
 
     <div class="backoffice-header">
@@ -71,56 +99,81 @@
             <form id="news-form">
                 <input type="hidden" id="news-id">
 
+                <!-- Parte Superior: Campos Comunes -->
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; border: 1px solid #eee; margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--primary-color); font-size: 1.1rem; border-bottom: 1px solid #ddd; padding-bottom: 0.5rem;">
+                        <i class="fas fa-cog"></i> Konfigurazio Orokorra (ES/EU-rako berdina)
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                        <div class="form-group">
+                            <label for="news-date">Ikus-data (ES/EU)</label>
+                            <input type="date" id="news-date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="news-publish-date">Argitaratze-data (Automatikoa)</label>
+                            <input type="date" id="news-publish-date" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="news-expiry-date">Iraungitze-data (Desagertu)</label>
+                            <input type="date" id="news-expiry-date" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="news-img">URL Irudi Nagusia</label>
+                            <input type="text" id="news-img" class="form-control" placeholder="https://ejemplo.com/imagen.jpg">
+                        </div>
+                    </div>
+                    <div id="news-img-preview" style="height: 150px; width: 100%; background-size: contain; background-position: center; background-repeat: no-repeat; border-radius: 8px; margin-top: 10px; display: none; border: 1px solid #ddd; background-color: #fff;"></div>
+                </div>
+
+                <!-- Parte Inferior: Dos Columnas por Idioma -->
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
                     <!-- Columna Castellano -->
-                    <div>
-                        <h3 style="margin-bottom: 1rem; color: #666;">Gaztelaniazko bertsioa</h3>
+                    <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #eee;">
+                        <h3 style="margin-bottom: 1.5rem; color: #666; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">Gaztelaniazko bertsioa</h3>
                         <div class="form-group">
-                            <label for="news-title-es">Izenburua (ES)</label>
-                            <input type="text" id="news-title-es" class="form-control"
-                                placeholder="Título en castellano" required>
+                            <label for="news-title-es">Título (ES)</label>
+                            <input type="text" id="news-title-es" class="form-control" placeholder="Título en castellano" required>
                         </div>
                         <div class="form-group">
-                            <label>Edukia (ES)</label>
-                            <div id="editor-es" style="height: 200px;"></div>
-                            <textarea id="html-es" class="form-control"
-                                style="height: 200px; display: none; font-family: monospace; font-size: 0.9rem; margin-top: 1px;"></textarea>
+                            <label for="news-summary-es">Resumen / Entradilla (ES)</label>
+                            <textarea id="news-summary-es" class="form-control" style="height: 80px;" placeholder="Breve resumen para la portada..."></textarea>
                         </div>
-                        <div style="display: flex; gap: 10px; margin-bottom: 1rem;">
-                            <button type="button" class="btn btn-admin-outline btn-small" onclick="toggleHtml('es')">
-                                <i class="fas fa-code"></i> HTML ikusi/editatu
-                            </button>
-                            <button type="button" class="btn btn-admin-outline btn-small"
-                                onclick="translateContent('es', 'eu')">
-                                Euskarara itzuli <i class="fas fa-arrow-right"></i>
-                            </button>
+                        <div class="form-group">
+                            <label>Contenido Detallado (ES)</label>
+                            <div id="editor-es" style="height: 300px;"></div>
+                            <textarea id="html-es" class="form-control" style="height: 300px; display: none; font-family: monospace;"></textarea>
                         </div>
                     </div>
 
                     <!-- Columna Euskera -->
-                    <div>
-                        <h3 style="margin-bottom: 1rem; color: #666;">Euskarazko bertsioa</h3>
+                    <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #eee;">
+                        <h3 style="margin-bottom: 1.5rem; color: #666; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;">Euskarazko bertsioa</h3>
                         <div class="form-group">
                             <label for="news-title-eu">Izenburua (EU)</label>
-                            <input type="text" id="news-title-eu" class="form-control" placeholder="Izenburua euskaraz"
-                                required>
+                            <input type="text" id="news-title-eu" class="form-control" placeholder="Izenburua euskaraz" required>
                         </div>
                         <div class="form-group">
-                            <label>Edukia (EU)</label>
-                            <div id="editor-eu" style="height: 200px;"></div>
-                            <textarea id="html-eu" class="form-control"
-                                style="height: 200px; display: none; font-family: monospace; font-size: 0.9rem; margin-top: 1px;"></textarea>
+                            <label for="news-summary-eu">Laburpena (EU)</label>
+                            <textarea id="news-summary-eu" class="form-control" style="height: 80px;" placeholder="Azalpen laburra azalarentzat..."></textarea>
                         </div>
-                        <div style="display: flex; gap: 10px; margin-bottom: 1rem;">
-                            <button type="button" class="btn btn-admin-outline btn-small"
-                                onclick="translateContent('eu', 'es')">
-                                <i class="fas fa-arrow-left"></i> Gaztelaniara itzuli
-                            </button>
-                            <button type="button" class="btn btn-admin-outline btn-small" onclick="toggleHtml('eu')">
-                                <i class="fas fa-code"></i> HTML ikusi/editatu
-                            </button>
+                        <div class="form-group">
+                            <label>Eduki Zehatza (EU)</label>
+                            <div id="editor-eu" style="height: 300px;"></div>
+                            <textarea id="html-eu" class="form-control" style="height: 300px; display: none; font-family: monospace;"></textarea>
                         </div>
                     </div>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-top: 1rem; justify-content: center;">
+                    <button type="button" class="btn btn-admin-outline btn-small" onclick="translateContent('es', 'eu')">
+                        <i class="fas fa-language"></i> Traducir Todo a Euskera
+                    </button>
+                    <button type="button" class="btn btn-admin-outline btn-small" onclick="translateContent('eu', 'es')">
+                        <i class="fas fa-language"></i> Traducir Todo a Castellano
+                    </button>
+                    <button type="button" class="btn btn-admin-outline btn-small" onclick="toggleHtml('es'); toggleHtml('eu');">
+                        <i class="fas fa-code"></i> Alternar Vista HTML
+                    </button>
                 </div>
 
                 <div
@@ -155,10 +208,10 @@
                 <thead>
                     <tr>
                         <th>Izenburua</th>
-                        <th>Data</th>
-                        <th width="80" style="text-align: center;">Home-n</th>
-                        <th width="80" style="text-align: center;">Ezkutatu</th>
-                        <th width="120" style="text-align: center;">Ekintzak</th>
+                        <th width="300">Data</th>
+                        <th width="100" style="text-align: center;">Home-n</th>
+                        <th width="100" style="text-align: center;">Ezkutatu</th>
+                        <th width="160" style="text-align: center;">Ekintzak</th>
                     </tr>
                 </thead>
                 <tbody id="news-table-body">

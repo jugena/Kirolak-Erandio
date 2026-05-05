@@ -22,19 +22,24 @@ function loadLatestNews() {
     if (!container) return;
 
     const lang = document.documentElement.lang || 'es';
+    const now = new Date().toISOString().split('T')[0];
     let news = getNews();
 
-    // Filter out disabled news and only keep those for home
-    const homeNews = news.filter(item => !item.disabled && item.on_home);
+    // Filter by dates and home visibility
+    const visibleNews = news.filter(item => {
+        const isPublished = !item.publish_date || item.publish_date <= now;
+        const isNotExpired = !item.expiry_date || item.expiry_date >= now;
+        return !item.disabled && isPublished && isNotExpired;
+    });
+
+    const homeNews = visibleNews.filter(item => item.on_home);
 
     if (homeNews.length === 0) {
-        // If no home-specific news, show the most recent non-disabled one
-        const activeNews = news.filter(item => !item.disabled);
-        if (activeNews.length === 0) {
+        if (visibleNews.length === 0) {
             container.innerHTML = lang === 'eu' ? '<p>Ez dago azken berririk.</p>' : '<p>No hay noticias recientes.</p>';
             return;
         }
-        renderSingleNews(container, activeNews[0], lang);
+        renderSingleNews(container, visibleNews[0], lang);
         return;
     }
 
@@ -43,22 +48,24 @@ function loadLatestNews() {
         return;
     }
 
-    // Carousel logic for 2 or more news
     renderCarouselNews(container, homeNews, lang);
 }
 
 function renderSingleNews(container, item, lang) {
     const title = lang === 'eu' ? (item.title_eu || item.title_es) : (item.title_es || item.title_eu);
+    const summary = lang === 'eu' ? (item.summary_eu || item.summary_es) : (item.summary_es || item.summary_eu);
     const content = lang === 'eu' ? (item.content_eu || item.content_es) : (item.content_es || item.content_eu);
+    const displaySummary = summary || (content.replace(/<[^>]*>?/gm, '').length > 200 ? content.replace(/<[^>]*>?/gm, '').substring(0, 200) + '...' : content);
 
     container.innerHTML = `
-        <div class="news-item">
-            <span class="news-date">${formatDate(item.date)}</span>
-            <h3 class="news-title">${title}</h3>
-            <div class="news-content">
-                ${content.replace(/<[^>]*>?/gm, '').length > 200 ? content.replace(/<[^>]*>?/gm, '').substring(0, 200) + '...' : content}
+        <div class="news-item" style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+            ${item.img ? `<div style="flex: 1; min-width: 300px;"><img src="${item.img}" style="width: 100%; border-radius: 12px; box-shadow: var(--shadow);"></div>` : ''}
+            <div style="flex: 1; min-width: 300px;">
+                <span class="news-date">${formatDate(item.date)}</span>
+                <h3 class="news-title">${title}</h3>
+                <div class="news-content">${displaySummary}</div>
+                <a href="${lang === 'eu' ? 'berriak.html' : 'noticias.html'}" class="btn" style="margin-top: 1.5rem;">${lang === 'eu' ? 'Ikusi berri guztiak' : 'Ver todas las noticias'}</a>
             </div>
-            <a href="${lang === 'eu' ? 'berriak.html' : 'noticias.html'}" class="btn" style="margin-top: 1rem;">${lang === 'eu' ? 'Ikusi berri guztiak' : 'Ver todas las noticias'}</a>
         </div>
     `;
 }
@@ -68,20 +75,24 @@ function renderCarouselNews(container, newsItems, lang) {
 
     function getNewsHTML(item) {
         const title = lang === 'eu' ? (item.title_eu || item.title_es) : (item.title_es || item.title_eu);
+        const summary = lang === 'eu' ? (item.summary_eu || item.summary_es) : (item.summary_es || item.summary_eu);
         const content = lang === 'eu' ? (item.content_eu || item.content_es) : (item.content_es || item.content_eu);
-        const summary = content.replace(/<[^>]*>?/gm, '').length > 150 ? content.replace(/<[^>]*>?/gm, '').substring(0, 150) + '...' : content;
+        const displaySummary = summary || (content.replace(/<[^>]*>?/gm, '').length > 150 ? content.replace(/<[^>]*>?/gm, '').substring(0, 150) + '...' : content);
 
         return `
-            <div class="news-item carousel-active">
-                <span class="news-date">${formatDate(item.date)}</span>
-                <h3 class="news-title">${title}</h3>
-                <div class="news-content">${summary}</div>
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:1.5rem;">
-                    <a href="${lang === 'eu' ? 'berriak.html' : 'noticias.html'}" class="btn btn-small">${lang === 'eu' ? 'Gehiago irakurri' : 'Leer más'}</a>
-                    <div class="carousel-controls">
-                        <button onclick="changeCarousel(-1)" class="carousel-btn"><i class="fas fa-chevron-left"></i></button>
-                        <span style="font-size: 0.9rem; font-weight: bold; color: var(--primary-color);">${currentIndex + 1} / ${newsItems.length}</span>
-                        <button onclick="changeCarousel(1)" class="carousel-btn"><i class="fas fa-chevron-right"></i></button>
+            <div class="news-item carousel-active" style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+                ${item.img ? `<div style="flex: 1; min-width: 250px;"><img src="${item.img}" style="width: 100%; border-radius: 12px; height: 200px; object-fit: cover;"></div>` : ''}
+                <div style="flex: 1; min-width: 250px;">
+                    <span class="news-date">${formatDate(item.date)}</span>
+                    <h3 class="news-title">${title}</h3>
+                    <div class="news-content">${displaySummary}</div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:1.5rem;">
+                        <a href="${lang === 'eu' ? 'berriak.html' : 'noticias.html'}" class="btn btn-small">${lang === 'eu' ? 'Gehiago irakurri' : 'Leer más'}</a>
+                        <div class="carousel-controls">
+                            <button onclick="changeCarousel(-1)" class="carousel-btn"><i class="fas fa-chevron-left"></i></button>
+                            <span style="font-size: 0.9rem; font-weight: bold; color: var(--primary-color);">${currentIndex + 1} / ${newsItems.length}</span>
+                            <button onclick="changeCarousel(1)" class="carousel-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -111,7 +122,12 @@ function loadAllNews() {
     if (!container) return;
 
     const lang = document.documentElement.lang || 'es';
-    const news = getNews().filter(item => !item.disabled);
+    const now = new Date().toISOString().split('T')[0];
+    const news = getNews().filter(item => {
+        const isPublished = !item.publish_date || item.publish_date <= now;
+        const isNotExpired = !item.expiry_date || item.expiry_date >= now;
+        return !item.disabled && isPublished && isNotExpired;
+    });
 
     if (news.length === 0) {
         container.innerHTML = lang === 'eu' ? '<p>Ez dago berririk argitaratuta.</p>' : '<p>No hay noticias publicadas.</p>';
@@ -122,7 +138,8 @@ function loadAllNews() {
         const title = lang === 'eu' ? (item.title_eu || item.title_es) : (item.title_es || item.title_eu);
         const content = lang === 'eu' ? (item.content_eu || item.content_es) : (item.content_es || item.content_eu);
         return `
-            <div class="news-item">
+            <div class="news-item" style="margin-bottom: 3rem; border-bottom: 1px solid #eee; padding-bottom: 2rem;">
+                ${item.img ? `<img src="${item.img}" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 15px; margin-bottom: 1.5rem;">` : ''}
                 <span class="news-date">${formatDate(item.date)}</span>
                 <h2 class="news-title">${title}</h2>
                 <div class="news-content">${content}</div>
@@ -133,12 +150,16 @@ function loadAllNews() {
 
 // Translation Helper (using a free API proxy or simple fetch)
 async function translateContent(from, to) {
-    const title = document.getElementById(`news-title-${from}`).value;
+    const title_es = document.getElementById('news-title-es').value;
+    const title_eu = document.getElementById('news-title-eu').value;
+    const summary_es = document.getElementById('news-summary-es').value;
+    const summary_eu = document.getElementById('news-summary-eu').value;
+    
     const editor = from === 'es' ? quillEs : quillEu;
     const targetEditor = to === 'es' ? quillEs : quillEu;
-    const content = editor.root.innerHTML;
+    const content = editor.getText();
 
-    if (!title.trim()) {
+    if (!title_es.trim() && !title_eu.trim()) {
         alert('Por favor, escribe un título primero.');
         return;
     }
@@ -151,18 +172,23 @@ async function translateContent(from, to) {
     try {
         // We call MyMemory API for translation
         const translate = async (text) => {
+            if (!text || !text.trim()) return '';
             const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${from}|${to}`);
             const data = await res.json();
             return data.responseData.translatedText;
         };
 
-        const translatedTitle = await translate(title);
-        document.getElementById(`news-title-${to}`).value = translatedTitle;
-
-        // Note: For HTML content, MyMemory might struggle with tags if not handled properly.
-        // We'll translate the text parts roughly for this demo.
-        const translatedContent = await translate(editor.getText());
-        targetEditor.setText(translatedContent);
+        if (from === 'es') {
+            document.getElementById('news-title-eu').value = await translate(title_es);
+            document.getElementById('news-summary-eu').value = await translate(summary_es);
+            const translatedContent = await translate(quillEs.getText());
+            quillEu.setText(translatedContent);
+        } else {
+            document.getElementById('news-title-es').value = await translate(title_eu);
+            document.getElementById('news-summary-es').value = await translate(summary_eu);
+            const translatedContent = await translate(quillEu.getText());
+            quillEs.setText(translatedContent);
+        }
 
         alert('Traducción completada. Por favor, revisa el resultado.');
     } catch (error) {
@@ -196,8 +222,15 @@ function initBackoffice() {
         const news = getNews();
         tableBody.innerHTML = news.map((item, index) => `
             <tr style="${item.disabled ? 'opacity: 0.6; background: #f9f9f9;' : ''}">
-                <td style="font-weight: 500;">${item.title_es || item.title}</td>
-                <td>${formatDate(item.date)}</td>
+                <td style="font-weight: 500;">
+                    ${item.title_es || item.title}<br>
+                    <small style="opacity:0.5;">${item.summary_es ? item.summary_es.substring(0, 50) + '...' : ''}</small>
+                </td>
+                <td>
+                    ${formatDate(item.date)}<br>
+                    <small style="font-size:0.7rem; opacity:0.6;">Pub: ${item.publish_date || '-'}</small><br>
+                    <small style="font-size:0.7rem; opacity:0.6;">Exp: ${item.expiry_date || '-'}</small>
+                </td>
                 <td style="text-align: center;">
                     <input type="checkbox" ${item.on_home ? 'checked' : ''} onclick="fastToggle('${item.id}', 'on_home')" title="Poner en Home">
                 </td>
@@ -205,9 +238,11 @@ function initBackoffice() {
                     <input type="checkbox" ${item.disabled ? 'checked' : ''} onclick="fastToggle('${item.id}', 'disabled')" title="Ocultar noticia">
                 </td>
                 <td style="text-align: center;">
-                    <button class="btn btn-small" style="background:#3498db; margin-right:2px;" onclick="duplicateNews('${item.id}')" title="Duplicar"><i class="fas fa-copy"></i></button>
-                    <button class="btn btn-small" style="background:#2ecc71; margin-right:2px;" onclick="editNews('${item.id}')" title="Editar"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-small btn-danger" onclick="deleteNews('${item.id}')" title="Eliminar"><i class="fas fa-trash"></i></button>
+                    <div style="display: flex; gap: 5px; justify-content: center; align-items: center;">
+                        <button class="btn btn-small" style="background:#3498db;" onclick="duplicateNews('${item.id}')" title="Duplicar"><i class="fas fa-copy"></i></button>
+                        <button class="btn btn-small" style="background:#2ecc71;" onclick="editNews('${item.id}')" title="Editar"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-small btn-danger" onclick="deleteNews('${item.id}')" title="Eliminar"><i class="fas fa-trash"></i></button>
+                    </div>
                 </td>
             </tr>
         `).join('');
@@ -262,10 +297,24 @@ function initBackoffice() {
         document.getElementById('news-id').value = item.id;
         document.getElementById('news-title-es').value = item.title_es || item.title || '';
         document.getElementById('news-title-eu').value = item.title_eu || '';
+        document.getElementById('news-date').value = item.date ? item.date.split('T')[0] : '';
+        document.getElementById('news-publish-date').value = item.publish_date || '';
+        document.getElementById('news-expiry-date').value = item.expiry_date || '';
+        document.getElementById('news-img').value = item.img || '';
+        document.getElementById('news-summary-es').value = item.summary_es || '';
+        document.getElementById('news-summary-eu').value = item.summary_eu || '';
         document.getElementById('news-on-home').checked = !!item.on_home;
         document.getElementById('news-disabled').checked = !!item.disabled;
         quillEs.root.innerHTML = item.content_es || item.content || '';
         quillEu.root.innerHTML = item.content_eu || '';
+
+        const preview = document.getElementById('news-img-preview');
+        if (item.img) {
+            preview.style.backgroundImage = `url(${item.img})`;
+            preview.style.display = 'block';
+        } else {
+            preview.style.display = 'none';
+        }
 
         document.getElementById('submit-btn').innerHTML = '<i class="fas fa-save"></i> Actualizar Noticia';
         document.getElementById('cancel-edit').style.display = 'inline-block';
@@ -298,6 +347,12 @@ function initBackoffice() {
         const id = document.getElementById('news-id').value;
         const title_es = document.getElementById('news-title-es').value;
         const title_eu = document.getElementById('news-title-eu').value;
+        const date = document.getElementById('news-date').value || new Date().toISOString().split('T')[0];
+        const publish_date = document.getElementById('news-publish-date').value;
+        const expiry_date = document.getElementById('news-expiry-date').value;
+        const img = document.getElementById('news-img').value;
+        const summary_es = document.getElementById('news-summary-es').value;
+        const summary_eu = document.getElementById('news-summary-eu').value;
         const on_home = document.getElementById('news-on-home').checked;
         const disabled = document.getElementById('news-disabled').checked;
 
@@ -316,14 +371,18 @@ function initBackoffice() {
         if (id) {
             // Update
             const index = news.findIndex(n => n.id === id);
-            news[index] = { ...news[index], title_es, title_eu, content_es, content_eu, on_home, disabled };
+            news[index] = { 
+                ...news[index], 
+                title_es, title_eu, date, publish_date, expiry_date, img, 
+                summary_es, summary_eu, content_es, content_eu, on_home, disabled 
+            };
         } else {
             // New
             news.unshift({
                 id: Date.now().toString(),
-                title_es, title_eu, content_es, content_eu,
-                on_home, disabled,
-                date: new Date().toISOString()
+                title_es, title_eu, date, publish_date, expiry_date, img,
+                summary_es, summary_eu, content_es, content_eu,
+                on_home, disabled
             });
         }
 
@@ -340,24 +399,34 @@ function initBackoffice() {
         const editorDiv = document.getElementById(`editor-${lang}`);
         const htmlArea = document.getElementById(`html-${lang}`);
         const quill = lang === 'es' ? quillEs : quillEu;
-        const toolbar = editorDiv.previousElementSibling; // Quill puts toolbar before editor
+        
+        // Find toolbar (Quill creates it before or after the container)
+        const container = editorDiv.closest('.form-group');
+        const toolbar = container.querySelector('.ql-toolbar');
 
         if (htmlArea.style.display === 'none') {
             htmlArea.value = quill.root.innerHTML;
             htmlArea.style.display = 'block';
             editorDiv.style.display = 'none';
-            if (toolbar && toolbar.classList.contains('ql-toolbar')) {
-                toolbar.style.display = 'none';
-            }
+            if (toolbar) toolbar.style.display = 'none';
         } else {
             quill.root.innerHTML = htmlArea.value;
             htmlArea.style.display = 'none';
             editorDiv.style.display = 'block';
-            if (toolbar && toolbar.classList.contains('ql-toolbar')) {
-                toolbar.style.display = 'block';
-            }
+            if (toolbar) toolbar.style.display = 'block';
         }
     };
+
+    // Image preview listener
+    document.getElementById('news-img').addEventListener('input', (e) => {
+        const preview = document.getElementById('news-img-preview');
+        if (e.target.value) {
+            preview.style.backgroundImage = `url(${e.target.value})`;
+            preview.style.display = 'block';
+        } else {
+            preview.style.display = 'none';
+        }
+    });
 }
 
 // Populate sample news if empty
